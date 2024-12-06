@@ -3,6 +3,7 @@ import rateLimit, { RateLimitRequestHandler } from 'express-rate-limit';
 
 import { blockUnsafeHTTP } from './BlockUnsafeHTTP';
 import { blockMethods } from './BlockSuspiciousMethods';
+import { blockLargePayload } from './BlockLargePayloads';
 
 /**
  * @description Throws an error if request does not use TLS over HTTP
@@ -41,8 +42,20 @@ function rateLimiting(): RateLimitRequestHandler {
   return rateLimiting;
 }
 
+/**
+ * @description Blocks any requests that exceed a pre-defined payload size.
+ */
+function blockLargeRequests(request: Request, _: Response, next: NextFunction): void {
+  const bytes = request.socket.bytesRead;
+
+  blockLargePayload(bytes);
+
+  return next();
+}
+
 export {
   blockUnsafeRequests,
   blockHttpMethods,
-  rateLimiting
+  rateLimiting,
+  blockLargeRequests
 }
