@@ -19,13 +19,35 @@ By combing through the logs, we can see that the attackers used a mix of:
 - Attempts at accessing `.git/config`. This could reveal sensitive repository information, including remote repository URLs and potentially secrets embedded in the repo.
 
 ### Analyzing the Data 
-#### Request Path
 I started by analyzing the `ClientRequestPath` field. It captures the endpoints targeted by incoming requests, making it an excellent source of information to understand the attack surface and identify malicious patterns. While running through the data from this particular field, I was mainly looking for signs of malicious behavior, such as:
 - Requests to unusual endpoints (/admin, /debug, /hidden);
 - Payloads with special characters used in injection attacks (<, >, ', ", %, --);
 - Query strings indicative of automated attacks.
 
-After finding request paths that were clearly malicious, I filtered and grouped the data using simple criteria, such as counting requests per unique URI or isolating requests with query parameters.
+After finding request paths that were clearly malicious, I filtered and grouped the data using simple criteria, such as counting requests per unique URI or isolating requests with query parameters. Repetition patterns helped identify endpoints that attackers repeatedly targeted (excluding ones that seemed like legitimate requests), potentially indicating attempts to exploit specific vulnerabilities.
+
+Here are some examples of what I observed:
+- There were numerous requests attempting to exploit various vulnerabilities, such as:
+  - Cross-Site Scripting (XSS);
+  - Server-Side Template Injection (SSTI)
+  - Null Byte Injection
+  - SQL Injection
+  - HTML Injection
+  - Path Traversal
+  - Credential Brute Forcing
+  - Remote Command Execution (RCE)
+  - Config File Disclosure
+  - Information Disclosure
+- There were over 600 different IP addresses sending maliciously formatted query strings to try and exploit a XSS vulnerability in the server;
+- 57% of the attempted XSS requests were made from Indonesia, and 41% from the US;
+- 55% of the attempted SSTI requests were made from Indonesia, and 37.5% from the US;
+
+Some insights:
+- Although a high number of malicious requests have been sent from Indonesia, there needs to be a thorough risk analysis process to validate if it's really worth it bussiness-wise to block requests coming from that country. Indonesia represents over 61% of the requests processed by the server. Some numbers on this matter:
+  - 305 Path traversal requests
+  - 55 SSTI requests
+  - 490 XSS requests
+  - 
 
 ### Mitigation Policies
 
