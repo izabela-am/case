@@ -2,15 +2,15 @@
 This toolkit is a collection of middlewares designed to help secure Node.js apps. These middlewares can be integrated into any microservice to enhance security practices such as IP blocklisting, TLS enforcement, HTTP method restrictions, rate limiting, security headers injection, and more.
 
 ### Features
-__- Add an IP to a Blocklist:__ Adds an IP address to a blocklist to prevent malicious or unwanted traffic.
-__- Check if IP is Blocklisted__: Checks whether a given IP address is on the blocklist.
-__- Block Unsafe HTTP Requests (No TLS)__: Blocks requests that are not served over TLS (i.e., HTTP requests instead of HTTPS).
-__- HTTP Method Blocking__: Allows the blocking of specific HTTP methods (e.g., OPTIONS) to reduce attack surface.
-__- Rate Limiting__: Limits the number of requests a client can make to prevent abuse or DDoS attacks.
-__- Security Headers Injection__: Automatically injects recommended security headers into responses to enhance security. All headers used are based on OWASP's Secure Headers project.
-__- Unsafe Headers Blocking__: Blocks requests with unsafe headers that may be used in attacks. All headers used are based on OWASP's Secure Headers project.
-__- User-Agent Analysis__: Analyzes the User-Agent string of incoming requests and can block suspicious or malicious user agents.
-__- Input Escaping__: Sanitizes and escapes potentially harmful characters in user input to prevent SQL injection, XSS, and other injection-based attacks.
+- __Add an IP to a Blocklist:__ Adds an IP address to a blocklist to prevent malicious or unwanted traffic.
+- __Check if IP is Blocklisted__: Checks whether a given IP address is on the blocklist.
+- __Block Unsafe HTTP Requests (No TLS)__: Blocks requests that are not served over TLS (i.e., HTTP requests instead of HTTPS).
+- __HTTP Method Blocking__: Allows the blocking of specific HTTP methods (e.g., OPTIONS) to reduce attack surface.
+- __Rate Limiting__: Limits the number of requests a client can make to prevent abuse or DDoS attacks.
+- __Security Headers Injection__: Automatically injects recommended security headers into responses to enhance security. All headers used are based on OWASP's Secure Headers project.
+- __Unsafe Headers Blocking__: Blocks requests with unsafe headers that may be used in attacks. All headers used are based on OWASP's Secure Headers project.
+- __User-Agent Analysis__: Analyzes the User-Agent string of incoming requests and can block suspicious or malicious user agents.
+- __Input Escaping__: Sanitizes and escapes potentially harmful characters in user input to prevent SQL injection, XSS, and other injection-based attacks.
 
 ### But why a middleware toolkit?
 Initially, I wanted to build a __security-focused microservice__, that would serve all of these features through an API. I changed my mind halfway through implementation and decided to build a lib that could just offer a bunch of methods for dev teams to use in their apps. 
