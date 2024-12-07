@@ -22,4 +22,4 @@ Here are the tradeoffs I thought of for each scenario:
 - The __library/toolkit__ approach is good for when you want to minimize latency and offer a more self-contained solution for development teams.
 
 ### Usage
-I have not uploaded this to NPM, as this is just a simple case study (plus, I have not had enough time to test this. And that's critical since this is a lib geared towards security). If you'd like to test any functions here though, just clone the repo and have at it.
+I have not uploaded this to NPM, as this is just a simple case study (plus, I have not had enough time to thoroughly test this. And that's critical since this is a lib geared towards security). If you'd like to test any functions here though, just clone the repo and have at it.
