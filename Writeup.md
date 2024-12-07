@@ -29,23 +29,24 @@ After finding request paths that were clearly malicious, I filtered and grouped 
 Here are some examples of what I observed:
 - There were numerous requests attempting to exploit various vulnerabilities, such as:
   - Cross-Site Scripting (XSS);
-  - Server-Side Template Injection (SSTI)
-  - Null Byte Injection
-  - SQL Injection
-  - HTML Injection
-  - Path Traversal
-  - Credential Brute Forcing
-  - Remote Command Execution (RCE)
-  - Config File Disclosure
-  - Information Disclosure
+  - Server-Side Template Injection (SSTI);
+  - Perl reverse shell via CGI scripts;
+  - Null Byte Injection;
+  - SQL Injection;
+  - HTML Injection;
+  - Path Traversal;
+  - Credential Brute Forcing;
+  - Remote Command Execution (RCE);
+  - Config File Disclosure;
+  - Information Disclosure.
 - There were over 600 different IP addresses sending maliciously formatted query strings to try and exploit a XSS vulnerability in the server;
 - 57% of the attempted XSS requests were made from Indonesia, and 41% from the US;
 - 55% of the attempted SSTI requests were made from Indonesia, and 37.5% from the US;
-- 138 requests were made without the use of TLS over HTTP (i.e. HTTPS);
+- 138 requests were made without the use of TLS over HTTP (HTTPS);
 - The IP address `53.153.77.110` sent a total of 156 requests, the most for any IP in the log file. 11 of these requests contained a malicious payload of some sort.
 - 
 
-Some insights:
+And some insights we can take from that:
 - Although a high number of malicious requests have been sent from Indonesia, there needs to be a thorough risk analysis process to validate if it's really worth it bussiness-wise to block requests coming from that country. Requests coming from Indonesia represent over 61% of the traffic processed by the server;
 - 
 
